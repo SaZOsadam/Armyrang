@@ -76,9 +76,10 @@ export default function NewPredictionPage() {
         Back
       </button>
 
-      <div className="bg-white/70 backdrop-blur-sm rounded-3xl border border-lavender-100/60 p-6 sm:p-8">
-        <h1 className="font-serif text-2xl font-bold text-gray-900 mb-1">New Prediction 🔮</h1>
-        <p className="text-sm text-gray-400 mb-6">Submit a cultural observation or forecast for the community.</p>
+      <div className="bg-white rounded-3xl border border-lavender-100/50 p-6 sm:p-8">
+        <p className="text-[10px] font-black tracking-[0.2em] uppercase text-red-400 mb-1">Submit a Signal</p>
+        <h1 className="font-serif text-2xl font-bold text-gray-900 mb-1">New Prediction</h1>
+        <p className="text-sm text-gray-400 mb-6">Frame it analytically. Submit your cultural observation for the community to assess.</p>
 
         {error && (
           <div className="flex items-center gap-2 p-3 mb-4 bg-rose-50 border border-rose-100 rounded-xl text-sm text-rose-600">
@@ -97,10 +98,10 @@ export default function NewPredictionPage() {
                   key={cat.value}
                   type="button"
                   onClick={() => setCategory(cat.value)}
-                  className={`p-3 rounded-xl border-2 text-left transition-all ${
+                  className={`p-3 rounded-xl border-2 text-left transition-all duration-200 ${
                     category === cat.value
-                      ? 'border-red-400 bg-lavender-50'
-                      : 'border-lavender-100/60 bg-white/50 hover:border-lavender-200'
+                      ? 'border-red-400 bg-lavender-50 shadow-sm'
+                      : 'border-lavender-100/50 bg-white hover:border-lavender-200 hover:bg-lavender-50/30'
                   }`}
                 >
                   <span className="text-lg">{cat.emoji}</span>
@@ -118,7 +119,7 @@ export default function NewPredictionPage() {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-4 py-2.5 bg-lavender-50/50 border border-lavender-200/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-300 transition-all"
+              className="w-full px-4 py-2.5 bg-white border border-lavender-100/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-200 transition-all shadow-sm"
               placeholder="e.g., Coordinated PR rollout suggests strategic alliance..."
               required
             />
@@ -131,8 +132,15 @@ export default function NewPredictionPage() {
               value={body}
               onChange={(e) => setBody(e.target.value)}
               rows={6}
-              className="w-full px-4 py-3 bg-lavender-50/50 border border-lavender-200/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-300 transition-all resize-none leading-relaxed"
-              placeholder="Observational note:&#10;The synchronized timing of recent appearances + coordinated media rollout suggest...&#10;&#10;Key signals:&#10;- Signal 1&#10;- Signal 2&#10;&#10;Conclusion: ..."
+              className="w-full px-4 py-3 bg-white border border-lavender-100/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-200 transition-all resize-none leading-relaxed shadow-sm"
+              placeholder="Observational note:
+The synchronized timing of recent appearances + coordinated media rollout suggest...
+
+Key signals:
+- Signal 1
+- Signal 2
+
+Conclusion: ..."
               required
             />
             <p className="text-xs text-gray-300 mt-1">
@@ -150,7 +158,7 @@ export default function NewPredictionPage() {
               type="url"
               value={evidenceUrl}
               onChange={(e) => setEvidenceUrl(e.target.value)}
-              className="w-full px-4 py-2.5 bg-lavender-50/50 border border-lavender-200/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-300 transition-all"
+              className="w-full px-4 py-2.5 bg-white border border-lavender-100/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-200 transition-all shadow-sm"
               placeholder="https://..."
             />
           </div>

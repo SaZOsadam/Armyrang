@@ -79,11 +79,11 @@ export default function ProfilePage() {
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       {/* Profile Card */}
-      <div className="bg-white/70 backdrop-blur-sm rounded-3xl border border-lavender-100/60 p-6 sm:p-8">
+      <div className="bg-white rounded-3xl border border-lavender-100/50 p-6 sm:p-8">
         <div className="flex items-start justify-between mb-6">
           <div className="flex items-center gap-4">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-lavender-200 to-rose-200 flex items-center justify-center">
-              <User size={28} className="text-red-600" />
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-lavender-100 to-rose-200 flex items-center justify-center text-2xl font-bold text-red-600 font-serif">
+              {(profile.display_name || '?').charAt(0).toUpperCase()}
             </div>
             <div>
               {editing ? (
@@ -147,39 +147,35 @@ export default function ProfilePage() {
             <button
               onClick={handleSave}
               disabled={saving}
-              className="flex items-center gap-1 px-3 py-1.5 bg-red-600 text-white rounded-xl text-sm font-medium hover:bg-red-700 transition-colors disabled:opacity-50"
+              className="flex items-center gap-1.5 px-4 py-2 bg-red-600 text-white rounded-xl text-sm font-medium hover:bg-red-700 transition-colors disabled:opacity-50 shadow-sm shadow-red-200/40"
             >
-              <Save size={14} />
-              {saving ? '...' : 'Save'}
+              <Save size={13} />
+              {saving ? 'Saving...' : 'Save'}
             </button>
           ) : (
             <button
               onClick={() => setEditing(true)}
-              className="flex items-center gap-1 px-3 py-1.5 bg-lavender-50 text-red-600 rounded-xl text-sm font-medium hover:bg-lavender-100 transition-colors border border-lavender-200/50"
+              className="flex items-center gap-1.5 px-4 py-2 bg-lavender-50 text-red-500 rounded-xl text-sm font-medium hover:bg-lavender-100 transition-colors border border-lavender-100"
             >
-              <Edit3 size={14} />
+              <Edit3 size={13} />
               Edit
             </button>
           )}
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-4">
-          <div className="bg-lavender-50/50 rounded-2xl p-4 text-center">
-            <Target size={18} className="mx-auto text-red-400 mb-1" />
-            <div className="text-xl font-bold text-gray-900">{profile.total_predictions || 0}</div>
-            <div className="text-xs text-gray-400">Predictions</div>
-          </div>
-          <div className="bg-sage-50/50 rounded-2xl p-4 text-center">
-            <Trophy size={18} className="mx-auto text-emerald-400 mb-1" />
-            <div className="text-xl font-bold text-emerald-600">{profile.correct_predictions || 0}</div>
-            <div className="text-xs text-gray-400">Correct</div>
-          </div>
-          <div className="bg-cream-50/50 rounded-2xl p-4 text-center">
-            <TrendingUp size={18} className="mx-auto text-amber-400 mb-1" />
-            <div className="text-xl font-bold text-red-600">{accuracy}%</div>
-            <div className="text-xs text-gray-400">Accuracy</div>
-          </div>
+        <div className="grid grid-cols-3 gap-3">
+          {[
+            { emoji: '🔮', label: 'Predictions', value: profile.total_predictions || 0, color: 'text-gray-900' },
+            { emoji: '✨', label: 'Correct', value: profile.correct_predictions || 0, color: 'text-emerald-600' },
+            { emoji: '📊', label: 'Accuracy', value: `${accuracy}%`, color: 'text-red-600' },
+          ].map(({ emoji, label, value, color }) => (
+            <div key={label} className="bg-lavender-50/60 rounded-2xl p-4 text-center border border-lavender-100/40">
+              <div className="text-xl mb-1">{emoji}</div>
+              <div className={`text-xl font-bold ${color}`}>{value}</div>
+              <div className="text-xs text-gray-400 mt-0.5">{label}</div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -197,10 +193,10 @@ export default function ProfilePage() {
           </div>
 
           {loading ? (
-            <div className="animate-pulse space-y-3">
+            <div className="space-y-3">
               {[1, 2].map(i => (
-                <div key={i} className="bg-white/50 rounded-2xl border border-lavender-100/30 p-5">
-                  <div className="h-5 bg-lavender-100 rounded w-3/4" />
+                <div key={i} className="bg-white rounded-2xl border border-lavender-100/40 p-5">
+                  <div className="skeleton h-5 w-3/4" />
                 </div>
               ))}
             </div>
@@ -211,8 +207,10 @@ export default function ProfilePage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-8 bg-white/40 rounded-2xl border border-lavender-100/30">
-              <p className="text-gray-400 text-sm">No predictions yet. Ready to make your first observation? 🌸</p>
+            <div className="text-center py-12 bg-white rounded-2xl border border-lavender-100/40">
+              <div className="text-3xl mb-3">🌸</div>
+              <p className="font-serif text-sm font-semibold text-gray-600 mb-1">No predictions yet.</p>
+              <p className="text-gray-400 text-xs">Ready to make your first observation?</p>
             </div>
           )}
         </div>

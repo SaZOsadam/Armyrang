@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom'
 import { Clock, TrendingUp, CheckCircle, XCircle, MessageCircle, ArrowUpRight } from 'lucide-react'
 
 const categoryColors = {
-  market_analysis: { bg: 'bg-blue-50', text: 'text-blue-600', border: 'border-blue-100', label: 'Market Analysis' },
-  body_language: { bg: 'bg-pink-50', text: 'text-pink-600', border: 'border-pink-100', label: 'Body Language' },
-  soft_conspiracy: { bg: 'bg-violet-50', text: 'text-violet-600', border: 'border-violet-100', label: 'Soft Conspiracy' },
-  prediction: { bg: 'bg-amber-50', text: 'text-amber-600', border: 'border-amber-100', label: 'Prediction' },
-  general: { bg: 'bg-gray-50', text: 'text-gray-600', border: 'border-gray-100', label: 'General' },
+  market_analysis: { bg: 'bg-blue-50', text: 'text-blue-500', border: 'border-blue-100', label: '📊 Market', emoji: '📊' },
+  body_language: { bg: 'bg-rose-50', text: 'text-rose-500', border: 'border-rose-100', label: '🪞 Body Language', emoji: '🪞' },
+  soft_conspiracy: { bg: 'bg-lavender-50', text: 'text-lavender-500', border: 'border-lavender-100', label: '🌙 Conspiracy', emoji: '🌙' },
+  prediction: { bg: 'bg-amber-50', text: 'text-amber-600', border: 'border-amber-100', label: '🔮 Prediction', emoji: '🔮' },
+  general: { bg: 'bg-sage-50', text: 'text-emerald-600', border: 'border-sage-100', label: '🕊️ General', emoji: '🕊️' },
 }
 
 const statusConfig = {
@@ -43,9 +43,9 @@ export default function PredictionCard({ prediction, showAuthor = true }) {
       to={`/predictions/${prediction.id}`}
       className="block no-underline group"
     >
-      <div className="relative bg-white rounded-2xl border border-gray-100 p-5 transition-all duration-300 hover:shadow-xl hover:shadow-red-100/30 hover:-translate-y-1 hover:border-red-100 overflow-hidden">
+      <div className="relative bg-white rounded-2xl border border-lavender-100/50 p-5 transition-all duration-300 hover:shadow-lg hover:shadow-lavender-200/30 hover:-translate-y-0.5 hover:border-lavender-200/60 overflow-hidden">
         {/* Hover gradient accent */}
-        <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-red-400 via-red-500 to-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-red-400 via-lavender-400 to-rose-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         {/* Top row: category + status */}
         <div className="flex items-center justify-between mb-3">
@@ -59,7 +59,7 @@ export default function PredictionCard({ prediction, showAuthor = true }) {
         </div>
 
         {/* Title */}
-        <h3 className="font-serif text-[17px] font-bold text-gray-900 mb-2 group-hover:text-red-700 transition-colors duration-200 leading-snug pr-6">
+        <h3 className="font-serif text-[17px] font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors duration-200 leading-snug pr-6">
           {prediction.title}
         </h3>
 
@@ -91,11 +91,11 @@ export default function PredictionCard({ prediction, showAuthor = true }) {
         </div>
 
         {/* Bottom row */}
-        <div className="flex items-center justify-between pt-3 border-t border-gray-50">
+        <div className="flex items-center justify-between pt-3 border-t border-lavender-100/40">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1 text-[11px] text-gray-400">
               <TrendingUp size={12} />
-              <span>{voteCount}</span>
+              <span>{voteCount} votes</span>
             </div>
             <div className="flex items-center gap-1 text-[11px] text-gray-400">
               <MessageCircle size={12} />
@@ -105,7 +105,7 @@ export default function PredictionCard({ prediction, showAuthor = true }) {
           <div className="flex items-center gap-1.5 text-[11px] text-gray-400">
             {showAuthor && prediction.profiles?.display_name && (
               <>
-                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center">
+                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-lavender-100 to-rose-200 flex items-center justify-center">
                   <span className="text-[7px] font-bold text-red-500">{prediction.profiles.display_name.charAt(0).toUpperCase()}</span>
                 </div>
                 <span className="font-medium text-gray-500">{prediction.profiles.display_name}</span>

@@ -26,7 +26,8 @@ export default function Layout({ children }) {
   return (
     <div className="min-h-screen flex flex-col bg-[#fdfcfb]">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-xl border-b border-lavender-100/60 sticky top-0 z-50 shadow-sm shadow-lavender-50/50">
+      <header className="bg-white/90 backdrop-blur-xl border-b border-lavender-100/50 sticky top-0 z-50">
+        <div className="h-px bg-gradient-to-r from-transparent via-red-300/40 to-transparent" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 no-underline group">
@@ -191,7 +192,10 @@ export default function Layout({ children }) {
             </div>
             <span className="text-sm font-medium text-gray-500">Armyrang</span>
           </div>
-          <p className="text-xs text-gray-400">Cultural analysis, softly. All opinions are analytical observations.</p>
+          <p className="text-xs text-gray-400">Cultural analysis, softly. 🌸 All opinions are analytical observations.</p>
+          <div className="flex items-center gap-3 text-xs text-gray-300">
+            <span>🌿 Soft Analysts Society</span>
+          </div>
         </div>
       </footer>
     </div>
