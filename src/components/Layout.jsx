@@ -26,7 +26,7 @@ export default function Layout({ children }) {
   return (
     <div className="min-h-screen flex flex-col bg-[#fdfcfb]">
       {/* Header */}
-      <header className="bg-white/90 backdrop-blur-xl border-b border-lavender-100/50 sticky top-0 z-50">
+      <header className="bg-white/90 backdrop-blur-xl border-b border-purple-100/50 sticky top-0 z-50">
         <div className="h-px bg-gradient-to-r from-transparent via-red-300/40 to-transparent" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           {/* Logo */}
@@ -184,7 +184,7 @@ export default function Layout({ children }) {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-lavender-100/40 py-6 mt-8">
+      <footer className="border-t border-purple-100/40 py-6 mt-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center">

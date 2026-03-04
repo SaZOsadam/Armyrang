@@ -4,7 +4,7 @@ import { Eye, ArrowLeft } from 'lucide-react'
 export default function NotFoundPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] text-center animate-fade-in-up">
-      <div className="w-20 h-20 rounded-3xl bg-lavender-100 flex items-center justify-center mx-auto mb-6">
+      <div className="w-20 h-20 rounded-3xl bg-purple-100 flex items-center justify-center mx-auto mb-6">
         <Eye size={32} className="text-red-400" />
       </div>
       <p className="text-xs font-bold tracking-[0.2em] uppercase text-red-400 mb-3">404</p>

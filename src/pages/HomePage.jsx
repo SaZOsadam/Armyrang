@@ -55,13 +55,13 @@ export default function HomePage() {
         {/* Soft glow blobs */}
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-red-100/30 rounded-full blur-3xl" />
-          <div className="absolute top-32 right-[5%] w-48 h-48 bg-lavender-200/20 rounded-full blur-3xl" />
+          <div className="absolute top-32 right-[5%] w-48 h-48 bg-purple-200/20 rounded-full blur-3xl" />
           <div className="absolute top-20 left-[5%] w-40 h-40 bg-rose-200/20 rounded-full blur-3xl" />
         </div>
 
         <div className="animate-fade-in-up max-w-3xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white border border-lavender-200/60 rounded-full text-xs text-red-500 font-semibold tracking-widest uppercase shadow-sm mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white border border-purple-200/60 rounded-full text-xs text-red-500 font-semibold tracking-widest uppercase shadow-sm mb-8">
             <span>🔮</span> Soft Analysts Society
           </div>
 
@@ -73,9 +73,9 @@ export default function HomePage() {
           {/* Tagline trio */}
           <div className="flex items-center justify-center gap-3 sm:gap-5 text-sm sm:text-base text-gray-400 font-light mb-3">
             <span>Soft aesthetic.</span>
-            <span className="text-lavender-300">✦</span>
+            <span className="text-purple-300">✦</span>
             <span>Smart gossip.</span>
-            <span className="text-lavender-300">✦</span>
+            <span className="text-purple-300">✦</span>
             <span>Data-driven delusion.</span>
           </div>
           <p className="text-sm text-gray-400 italic mb-10">We are not shouting. We are observing. 👀</p>
@@ -91,17 +91,17 @@ export default function HomePage() {
               </Link>
               <Link
                 to="/predictions"
-                className="px-8 py-3.5 bg-white text-gray-700 rounded-2xl font-semibold hover:bg-lavender-50 transition-all duration-200 no-underline border border-lavender-200/60 shadow-sm hover:shadow-md text-sm"
+                className="px-8 py-3.5 bg-white text-gray-700 rounded-2xl font-semibold hover:bg-purple-50 transition-all duration-200 no-underline border border-purple-200/60 shadow-sm hover:shadow-md text-sm"
               >
                 Browse the Ledger →
               </Link>
             </div>
           )}
           {user && profile && (
-            <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-white rounded-2xl text-sm text-gray-600 border border-lavender-200/60 shadow-sm animate-fade-in-up stagger-2">
+            <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-white rounded-2xl text-sm text-gray-600 border border-purple-200/60 shadow-sm animate-fade-in-up stagger-2">
               <span>🌿</span>
               Welcome back, <span className="text-red-600 font-semibold">{profile.display_name}</span>
-              <span className="text-xs px-2.5 py-0.5 bg-lavender-50 text-red-500 rounded-full font-medium border border-lavender-100">{profile.role}</span>
+              <span className="text-xs px-2.5 py-0.5 bg-purple-50 text-red-500 rounded-full font-medium border border-purple-100">{profile.role}</span>
             </div>
           )}
         </div>
@@ -114,7 +114,7 @@ export default function HomePage() {
           { emoji: '🌿', label: 'Analysts', value: stats.analysts },
           { emoji: '🗳️', label: 'Votes Cast', value: stats.votes },
         ].map(({ emoji, label, value }, i) => (
-          <div key={label} className={`flex items-center gap-4 px-6 py-4 bg-white rounded-2xl border border-lavender-100/60 shadow-sm min-w-[160px] animate-fade-in-up stagger-${i + 1}`}>
+          <div key={label} className={`flex items-center gap-4 px-6 py-4 bg-white rounded-2xl border border-purple-100/60 shadow-sm min-w-[160px] animate-fade-in-up stagger-${i + 1}`}>
             <span className="text-2xl">{emoji}</span>
             <div>
               <div className="text-2xl font-bold text-gray-900 leading-none">{value}</div>
@@ -142,7 +142,7 @@ export default function HomePage() {
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[1, 2, 3, 4].map(i => (
-              <div key={i} className="bg-white rounded-2xl border border-lavender-100/40 p-5">
+              <div key={i} className="bg-white rounded-2xl border border-purple-100/40 p-5">
                 <div className="skeleton h-5 w-24 mb-4" />
                 <div className="skeleton h-6 w-3/4 mb-3" />
                 <div className="skeleton h-4 w-full mb-2" />
@@ -159,7 +159,7 @@ export default function HomePage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 bg-white rounded-3xl border border-lavender-100/40">
+          <div className="text-center py-20 bg-white rounded-3xl border border-purple-100/40">
             <div className="text-5xl mb-4">🌙</div>
             <p className="font-serif text-lg font-semibold text-gray-700 mb-2">The ledger is empty.</p>
             <p className="text-gray-400 text-sm mb-6">The stage is set for the first observation.</p>
@@ -177,7 +177,7 @@ export default function HomePage() {
       </section>
 
       {/* ── How it works ── */}
-      <section className="bg-white rounded-3xl border border-lavender-100/40 p-8 sm:p-12">
+      <section className="bg-white rounded-3xl border border-purple-100/40 p-8 sm:p-12">
         <div className="text-center mb-10">
           <p className="text-xs font-bold tracking-[0.15em] uppercase text-red-400 mb-2">The Method</p>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-gray-900">How The Observatory Works</h2>
@@ -205,12 +205,12 @@ export default function HomePage() {
           ].map(({ step, emoji, title, desc }, i) => (
             <div key={step} className={`relative text-center animate-fade-in-up stagger-${i + 1}`}>
               {i < 2 && (
-                <div className="hidden md:block absolute top-8 right-0 w-px h-16 bg-lavender-100 translate-x-3" />
+                <div className="hidden md:block absolute top-8 right-0 w-px h-16 bg-purple-100 translate-x-3" />
               )}
-              <div className="w-16 h-16 rounded-2xl bg-lavender-50 flex items-center justify-center mx-auto mb-5 text-3xl">
+              <div className="w-16 h-16 rounded-2xl bg-purple-50 flex items-center justify-center mx-auto mb-5 text-3xl">
                 {emoji}
               </div>
-              <div className="text-[10px] font-black tracking-[0.25em] text-lavender-400 mb-2 uppercase">{step}</div>
+              <div className="text-[10px] font-black tracking-[0.25em] text-purple-400 mb-2 uppercase">{step}</div>
               <h3 className="font-serif font-bold text-gray-900 mb-2 text-lg">{title}</h3>
               <p className="text-sm text-gray-400 leading-relaxed">{desc}</p>
             </div>
@@ -219,16 +219,16 @@ export default function HomePage() {
       </section>
 
       {/* ── Aesthetic rules ── */}
-      <section className="bg-gradient-to-br from-lavender-50 to-rose-50 rounded-3xl border border-lavender-100/60 p-8 sm:p-10">
+      <section className="bg-gradient-to-br from-purple-50 to-rose-50 rounded-3xl border border-purple-100/60 p-8 sm:p-10">
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-3xl mb-4">🌸</p>
           <h2 className="font-serif text-xl sm:text-2xl font-bold text-gray-900 mb-4">The Aesthetic Rules</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm text-gray-500 mb-6">
             {['Soft pastels only', 'No aggressive caps', 'No dragging', 'Analytical tone'].map(r => (
-              <div key={r} className="px-3 py-2.5 bg-white/80 rounded-xl border border-lavender-100/60 text-xs font-medium">{r}</div>
+              <div key={r} className="px-3 py-2.5 bg-white/80 rounded-xl border border-purple-100/60 text-xs font-medium">{r}</div>
             ))}
           </div>
-          <div className="bg-white/80 rounded-2xl border border-lavender-100/60 p-5 text-left">
+          <div className="bg-white/80 rounded-2xl border border-purple-100/60 p-5 text-left">
             <p className="text-xs font-bold text-red-400 tracking-widest uppercase mb-3">Example Post Style</p>
             <p className="text-sm text-gray-500 italic leading-relaxed">
               "Observational note: The coordinated outfits + synchronized PR rollout suggest possible strategic alignment.

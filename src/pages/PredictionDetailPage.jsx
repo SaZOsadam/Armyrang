@@ -134,11 +134,11 @@ export default function PredictionDetailPage() {
   if (loading) {
     return (
       <div className="max-w-3xl mx-auto py-8">
-        <div className="bg-white/50 rounded-3xl border border-lavender-100/30 p-8 animate-pulse">
-          <div className="h-6 bg-lavender-100 rounded w-32 mb-4" />
-          <div className="h-8 bg-lavender-100 rounded w-3/4 mb-3" />
-          <div className="h-4 bg-lavender-50 rounded w-full mb-2" />
-          <div className="h-4 bg-lavender-50 rounded w-2/3" />
+        <div className="bg-white/50 rounded-3xl border border-purple-100/30 p-8 animate-pulse">
+          <div className="h-6 bg-purple-100 rounded w-32 mb-4" />
+          <div className="h-8 bg-purple-100 rounded w-3/4 mb-3" />
+          <div className="h-4 bg-purple-50 rounded w-full mb-2" />
+          <div className="h-4 bg-purple-50 rounded w-2/3" />
         </div>
       </div>
     )
@@ -180,10 +180,10 @@ export default function PredictionDetailPage() {
       </button>
 
       {/* Main Prediction Card */}
-      <div className="bg-white rounded-3xl border border-lavender-100/50 p-6 sm:p-8">
+      <div className="bg-white rounded-3xl border border-purple-100/50 p-6 sm:p-8">
         {/* Category + Status */}
         <div className="flex items-center justify-between mb-4">
-          <span className="text-sm font-medium text-red-500 bg-lavender-50 px-3 py-1.5 rounded-full border border-lavender-100/60">
+          <span className="text-sm font-medium text-red-500 bg-purple-50 px-3 py-1.5 rounded-full border border-purple-100/60">
             {categoryLabels[prediction.category] || '🕊️ General'}
           </span>
           <div className={`flex items-center gap-1.5 text-sm font-medium ${
@@ -207,12 +207,12 @@ export default function PredictionDetailPage() {
 
         {/* Author */}
         <div className="flex items-center gap-2 mb-6">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-lavender-100 to-rose-200 flex items-center justify-center text-xs font-bold text-red-600">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-purple-100 to-rose-200 flex items-center justify-center text-xs font-bold text-red-600">
             {(prediction.profiles?.display_name || '?').charAt(0).toUpperCase()}
           </div>
           <span className="text-sm font-medium text-gray-700">{prediction.profiles?.display_name}</span>
           {prediction.profiles?.title && (
-            <span className="px-2 py-0.5 bg-lavender-50 text-red-400 rounded-full text-xs border border-lavender-100/60">
+            <span className="px-2 py-0.5 bg-purple-50 text-red-400 rounded-full text-xs border border-purple-100/60">
               {prediction.profiles.title}
             </span>
           )}
@@ -227,7 +227,7 @@ export default function PredictionDetailPage() {
 
         {/* Evidence */}
         {prediction.evidence_url && (
-          <div className="mb-6 p-3 bg-cream-50 border border-cream-200 rounded-xl">
+          <div className="mb-6 p-3 bg-amber-50 border border-amber-200 rounded-xl">
             <p className="text-xs text-amber-600 font-medium mb-1">📎 Supporting Evidence</p>
             <a href={prediction.evidence_url} target="_blank" rel="noopener noreferrer" className="text-sm text-red-600 hover:underline break-all">
               {prediction.evidence_url}
@@ -236,10 +236,10 @@ export default function PredictionDetailPage() {
         )}
 
         {/* Confidence Stats */}
-        <div className="bg-gradient-to-br from-lavender-50/60 to-rose-50/40 rounded-2xl p-5 mb-6 border border-lavender-100/40">
+        <div className="bg-gradient-to-br from-purple-50/60 to-rose-50/40 rounded-2xl p-5 mb-6 border border-purple-100/40">
           <div className="flex items-center justify-between mb-3">
             <div>
-              <p className="text-[10px] font-black tracking-[0.2em] uppercase text-lavender-400 mb-0.5">Community Signal</p>
+              <p className="text-[10px] font-black tracking-[0.2em] uppercase text-purple-400 mb-0.5">Community Signal</p>
               <span className="text-sm font-medium text-gray-700">Confidence Level</span>
             </div>
             <span className="text-3xl font-bold text-red-600">{avgConfidence}%</span>
@@ -261,7 +261,7 @@ export default function PredictionDetailPage() {
 
         {/* Resolve Buttons (admin or author) */}
         {prediction.status === 'open' && (isAdmin || prediction.author_id === user?.id) && (
-          <div className="flex items-center gap-3 p-4 bg-sage-50/50 rounded-2xl border border-sage-200/50 mb-6">
+          <div className="flex items-center gap-3 p-4 bg-green-50/50 rounded-2xl border border-green-200/50 mb-6">
             <Shield size={16} className="text-emerald-500" />
             <span className="text-sm text-gray-600 flex-1">Resolve this prediction:</span>
             <button
@@ -281,7 +281,7 @@ export default function PredictionDetailPage() {
 
         {/* Vote Section */}
         {prediction.status === 'open' && user && isAnalyst && (
-          <div className="p-4 bg-white/80 rounded-2xl border border-lavender-100/50">
+          <div className="p-4 bg-white/80 rounded-2xl border border-purple-100/50">
             <h3 className="text-sm font-medium text-gray-700 mb-3">
               {myVote ? 'Update Your Confidence Vote' : 'Cast Your Confidence Vote'} 🌿
             </h3>
@@ -297,13 +297,13 @@ export default function PredictionDetailPage() {
         )}
 
         {prediction.status === 'open' && user && !isAnalyst && (
-          <div className="p-4 bg-lavender-50/50 rounded-2xl text-center text-sm text-gray-400">
+          <div className="p-4 bg-purple-50/50 rounded-2xl text-center text-sm text-gray-400">
             Only analysts can vote. <Link to="/profile" className="text-red-500 no-underline">Upgrade your role →</Link>
           </div>
         )}
 
         {!user && prediction.status === 'open' && (
-          <div className="p-4 bg-lavender-50/50 rounded-2xl text-center text-sm text-gray-400">
+          <div className="p-4 bg-purple-50/50 rounded-2xl text-center text-sm text-gray-400">
             <Link to="/auth" className="text-red-500 no-underline">Sign in</Link> to vote on this prediction.
           </div>
         )}
@@ -311,8 +311,8 @@ export default function PredictionDetailPage() {
 
       {/* Vote Distribution */}
       {votes.length > 0 && (
-        <div className="bg-white rounded-3xl border border-lavender-100/50 p-6">
-          <p className="text-[10px] font-black tracking-[0.2em] uppercase text-lavender-400 mb-1">Analyst Votes</p>
+        <div className="bg-white rounded-3xl border border-purple-100/50 p-6">
+          <p className="text-[10px] font-black tracking-[0.2em] uppercase text-purple-400 mb-1">Analyst Votes</p>
           <h2 className="font-serif text-lg font-semibold text-gray-900 mb-4">Vote Distribution</h2>
           <div className="space-y-2">
             {votes.map(vote => (
@@ -337,8 +337,8 @@ export default function PredictionDetailPage() {
       )}
 
       {/* Comments Section */}
-      <div className="bg-white rounded-3xl border border-lavender-100/50 p-6">
-        <p className="text-[10px] font-black tracking-[0.2em] uppercase text-lavender-400 mb-1">Discussion</p>
+      <div className="bg-white rounded-3xl border border-purple-100/50 p-6">
+        <p className="text-[10px] font-black tracking-[0.2em] uppercase text-purple-400 mb-1">Discussion</p>
         <h2 className="font-serif text-lg font-semibold text-gray-900 mb-4">
           {comments.length > 0 ? `${comments.length} Observation${comments.length !== 1 ? 's' : ''}` : 'Add an Observation'}
         </h2>
@@ -346,7 +346,7 @@ export default function PredictionDetailPage() {
         {comments.length > 0 ? (
           <div className="space-y-3 mb-6">
             {comments.map(comment => (
-              <div key={comment.id} className="p-4 bg-lavender-50/40 rounded-2xl border border-lavender-100/40">
+              <div key={comment.id} className="p-4 bg-purple-50/40 rounded-2xl border border-purple-100/40">
                 <div className="flex items-center gap-2 mb-1.5">
                   <span className="text-sm font-medium text-red-600">{comment.profiles?.display_name}</span>
                   {comment.profiles?.title && (
@@ -369,7 +369,7 @@ export default function PredictionDetailPage() {
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
               placeholder="Add an observation..."
-              className="flex-1 px-4 py-2.5 bg-white/60 border border-lavender-100/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-300 transition-all"
+              className="flex-1 px-4 py-2.5 bg-white/60 border border-purple-100/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-300 transition-all"
             />
             <button
               type="submit"

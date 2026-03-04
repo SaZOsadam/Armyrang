@@ -57,7 +57,7 @@ export default function AuthPage() {
         </p>
       </div>
 
-      <div className="bg-white rounded-3xl border border-lavender-100/60 p-6 sm:p-8 shadow-sm">
+      <div className="bg-white rounded-3xl border border-purple-100/60 p-6 sm:p-8 shadow-sm">
         {error && (
           <div className="flex items-start gap-2.5 p-3.5 mb-5 bg-red-50 border border-red-100 rounded-xl text-sm text-red-600 animate-slide-down">
             <AlertCircle size={16} className="mt-0.5 shrink-0" />
@@ -83,7 +83,7 @@ export default function AuthPage() {
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 bg-lavender-50/40 border border-lavender-100/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-300 focus:bg-white transition-all"
+                    className="w-full pl-10 pr-4 py-3 bg-purple-50/40 border border-purple-100/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-300 focus:bg-white transition-all"
                     placeholder="Your analyst name..."
                     required
                   />
@@ -104,8 +104,8 @@ export default function AuthPage() {
                       onClick={() => setRole(r.key)}
                       className={`relative p-4 rounded-2xl border-2 text-left transition-all duration-200 ${
                         role === r.key
-                          ? 'border-red-400 bg-lavender-50 shadow-sm'
-                          : 'border-lavender-100/60 bg-white hover:border-lavender-200 hover:bg-lavender-50/40'
+                          ? 'border-red-400 bg-purple-50 shadow-sm'
+                          : 'border-purple-100/60 bg-white hover:border-purple-200 hover:bg-purple-50/40'
                       }`}
                     >
                       {role === r.key && (
@@ -131,7 +131,7 @@ export default function AuthPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-lavender-50/40 border border-lavender-100/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-300 focus:bg-white transition-all"
+                className="w-full pl-10 pr-4 py-3 bg-purple-50/40 border border-purple-100/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-300 focus:bg-white transition-all"
                 placeholder="you@example.com"
                 required
               />
@@ -146,7 +146,7 @@ export default function AuthPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-lavender-50/40 border border-lavender-100/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-300 focus:bg-white transition-all"
+                className="w-full pl-10 pr-4 py-3 bg-purple-50/40 border border-purple-100/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-300 focus:bg-white transition-all"
                 placeholder="Min 6 characters"
                 minLength={6}
                 required
@@ -167,7 +167,7 @@ export default function AuthPage() {
           </button>
         </form>
 
-        <div className="mt-5 pt-5 border-t border-lavender-100/60 text-center">
+        <div className="mt-5 pt-5 border-t border-purple-100/60 text-center">
           <button
             onClick={() => { setIsLogin(!isLogin); setError(''); setSuccess('') }}
             className="text-sm text-gray-500 hover:text-red-600 transition-colors bg-transparent border-none cursor-pointer"

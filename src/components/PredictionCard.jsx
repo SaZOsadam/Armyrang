@@ -4,9 +4,9 @@ import { Clock, TrendingUp, CheckCircle, XCircle, MessageCircle, ArrowUpRight } 
 const categoryColors = {
   market_analysis: { bg: 'bg-blue-50', text: 'text-blue-500', border: 'border-blue-100', label: '📊 Market', emoji: '📊' },
   body_language: { bg: 'bg-rose-50', text: 'text-rose-500', border: 'border-rose-100', label: '🪞 Body Language', emoji: '🪞' },
-  soft_conspiracy: { bg: 'bg-lavender-50', text: 'text-lavender-500', border: 'border-lavender-100', label: '🌙 Conspiracy', emoji: '🌙' },
+  soft_conspiracy: { bg: 'bg-purple-50', text: 'text-purple-500', border: 'border-purple-100', label: '🌙 Conspiracy', emoji: '🌙' },
   prediction: { bg: 'bg-amber-50', text: 'text-amber-600', border: 'border-amber-100', label: '🔮 Prediction', emoji: '🔮' },
-  general: { bg: 'bg-sage-50', text: 'text-emerald-600', border: 'border-sage-100', label: '🕊️ General', emoji: '🕊️' },
+  general: { bg: 'bg-green-50', text: 'text-emerald-600', border: 'border-green-100', label: '🕊️ General', emoji: '🕊️' },
 }
 
 const statusConfig = {
@@ -43,9 +43,9 @@ export default function PredictionCard({ prediction, showAuthor = true }) {
       to={`/predictions/${prediction.id}`}
       className="block no-underline group"
     >
-      <div className="relative bg-white rounded-2xl border border-lavender-100/50 p-5 transition-all duration-300 hover:shadow-lg hover:shadow-lavender-200/30 hover:-translate-y-0.5 hover:border-lavender-200/60 overflow-hidden">
+      <div className="relative bg-white rounded-2xl border border-purple-100/50 p-5 transition-all duration-300 hover:shadow-lg hover:shadow-purple-200/30 hover:-translate-y-0.5 hover:border-purple-200/60 overflow-hidden">
         {/* Hover gradient accent */}
-        <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-red-400 via-lavender-400 to-rose-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-red-400 via-purple-400 to-rose-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         {/* Top row: category + status */}
         <div className="flex items-center justify-between mb-3">
@@ -91,7 +91,7 @@ export default function PredictionCard({ prediction, showAuthor = true }) {
         </div>
 
         {/* Bottom row */}
-        <div className="flex items-center justify-between pt-3 border-t border-lavender-100/40">
+        <div className="flex items-center justify-between pt-3 border-t border-purple-100/40">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1 text-[11px] text-gray-400">
               <TrendingUp size={12} />
@@ -105,7 +105,7 @@ export default function PredictionCard({ prediction, showAuthor = true }) {
           <div className="flex items-center gap-1.5 text-[11px] text-gray-400">
             {showAuthor && prediction.profiles?.display_name && (
               <>
-                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-lavender-100 to-rose-200 flex items-center justify-center">
+                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-purple-100 to-rose-200 flex items-center justify-center">
                   <span className="text-[7px] font-bold text-red-500">{prediction.profiles.display_name.charAt(0).toUpperCase()}</span>
                 </div>
                 <span className="font-medium text-gray-500">{prediction.profiles.display_name}</span>

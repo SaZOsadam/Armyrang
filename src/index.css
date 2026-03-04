@@ -16,30 +16,6 @@
   --color-red-800: #9f1239;
   --color-red-900: #881337;
 
-  /* Lavender — actual soft lavender/lilac */
-  --color-lavender-50: #faf5ff;
-  --color-lavender-100: #f3e8ff;
-  --color-lavender-200: #e9d5ff;
-  --color-lavender-300: #d8b4fe;
-  --color-lavender-400: #c084fc;
-  --color-lavender-500: #a855f7;
-
-  /* Rose — blush tones */
-  --color-rose-50: #fff1f2;
-  --color-rose-100: #ffe4e6;
-  --color-rose-200: #fecdd3;
-  --color-rose-300: #fda4af;
-
-  /* Sage — soft green */
-  --color-sage-50: #f0fdf4;
-  --color-sage-100: #dcfce7;
-  --color-sage-200: #bbf7d0;
-  --color-sage-300: #86efac;
-
-  /* Cream */
-  --color-cream-50: #fffbeb;
-  --color-cream-100: #fef3c7;
-  --color-cream-200: #fde68a;
 }
 
 * {

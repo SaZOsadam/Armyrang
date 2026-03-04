@@ -79,10 +79,10 @@ export default function ProfilePage() {
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       {/* Profile Card */}
-      <div className="bg-white rounded-3xl border border-lavender-100/50 p-6 sm:p-8">
+      <div className="bg-white rounded-3xl border border-purple-100/50 p-6 sm:p-8">
         <div className="flex items-start justify-between mb-6">
           <div className="flex items-center gap-4">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-lavender-100 to-rose-200 flex items-center justify-center text-2xl font-bold text-red-600 font-serif">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-100 to-rose-200 flex items-center justify-center text-2xl font-bold text-red-600 font-serif">
               {(profile.display_name || '?').charAt(0).toUpperCase()}
             </div>
             <div>
@@ -91,7 +91,7 @@ export default function ProfilePage() {
                   type="text"
                   value={displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
-                  className="text-xl font-serif font-bold text-gray-900 bg-lavender-50 border border-lavender-200 rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-red-300"
+                  className="text-xl font-serif font-bold text-gray-900 bg-purple-50 border border-purple-200 rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-red-300"
                 />
               ) : (
                 <h1 className="font-serif text-xl font-bold text-gray-900">{profile.display_name}</h1>
@@ -134,7 +134,7 @@ export default function ProfilePage() {
                       {profile.role === 'observer' && <Eye size={10} className="inline mr-1" />}
                       {profile.role}
                     </span>
-                    <span className="px-2 py-0.5 bg-lavender-50 text-red-400 rounded-full text-xs">
+                    <span className="px-2 py-0.5 bg-purple-50 text-red-400 rounded-full text-xs">
                       {profile.title || 'Emerging Theorist'}
                     </span>
                   </>
@@ -155,7 +155,7 @@ export default function ProfilePage() {
           ) : (
             <button
               onClick={() => setEditing(true)}
-              className="flex items-center gap-1.5 px-4 py-2 bg-lavender-50 text-red-500 rounded-xl text-sm font-medium hover:bg-lavender-100 transition-colors border border-lavender-100"
+              className="flex items-center gap-1.5 px-4 py-2 bg-purple-50 text-red-500 rounded-xl text-sm font-medium hover:bg-purple-100 transition-colors border border-purple-100"
             >
               <Edit3 size={13} />
               Edit
@@ -170,7 +170,7 @@ export default function ProfilePage() {
             { emoji: '✨', label: 'Correct', value: profile.correct_predictions || 0, color: 'text-emerald-600' },
             { emoji: '📊', label: 'Accuracy', value: `${accuracy}%`, color: 'text-red-600' },
           ].map(({ emoji, label, value, color }) => (
-            <div key={label} className="bg-lavender-50/60 rounded-2xl p-4 text-center border border-lavender-100/40">
+            <div key={label} className="bg-purple-50/60 rounded-2xl p-4 text-center border border-purple-100/40">
               <div className="text-xl mb-1">{emoji}</div>
               <div className={`text-xl font-bold ${color}`}>{value}</div>
               <div className="text-xs text-gray-400 mt-0.5">{label}</div>
@@ -195,7 +195,7 @@ export default function ProfilePage() {
           {loading ? (
             <div className="space-y-3">
               {[1, 2].map(i => (
-                <div key={i} className="bg-white rounded-2xl border border-lavender-100/40 p-5">
+                <div key={i} className="bg-white rounded-2xl border border-purple-100/40 p-5">
                   <div className="skeleton h-5 w-3/4" />
                 </div>
               ))}
@@ -207,7 +207,7 @@ export default function ProfilePage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12 bg-white rounded-2xl border border-lavender-100/40">
+            <div className="text-center py-12 bg-white rounded-2xl border border-purple-100/40">
               <div className="text-3xl mb-3">🌸</div>
               <p className="font-serif text-sm font-semibold text-gray-600 mb-1">No predictions yet.</p>
               <p className="text-gray-400 text-xs">Ready to make your first observation?</p>

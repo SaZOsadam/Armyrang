@@ -69,13 +69,13 @@ export default function LeaderboardPage() {
       </div>
 
       {/* Title Legend */}
-      <div className="bg-white rounded-2xl border border-lavender-100/50 p-5">
-        <p className="text-[10px] font-black tracking-[0.2em] uppercase text-lavender-400 mb-3">Analyst Titles</p>
+      <div className="bg-white rounded-2xl border border-purple-100/50 p-5">
+        <p className="text-[10px] font-black tracking-[0.2em] uppercase text-purple-400 mb-3">Analyst Titles</p>
         <div className="flex flex-wrap gap-2">
           {titleThresholds.map(t => {
             const Icon = t.icon
             return (
-              <div key={t.title} className="flex items-center gap-1.5 px-3 py-1.5 bg-lavender-50/60 rounded-full border border-lavender-100/60 text-xs">
+              <div key={t.title} className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-50/60 rounded-full border border-purple-100/60 text-xs">
                 <Icon size={12} className={t.color} />
                 <span className="text-gray-700 font-medium">{t.title}</span>
                 <span className="text-gray-300 text-[10px]">{t.min}+</span>
@@ -89,8 +89,8 @@ export default function LeaderboardPage() {
       {loading ? (
         <div className="space-y-3">
           {[1, 2, 3, 4, 5].map(i => (
-            <div key={i} className="bg-white/50 rounded-2xl border border-lavender-100/30 p-4 animate-pulse">
-              <div className="h-5 bg-lavender-100 rounded w-48" />
+            <div key={i} className="bg-white/50 rounded-2xl border border-purple-100/30 p-4 animate-pulse">
+              <div className="h-5 bg-purple-100 rounded w-48" />
             </div>
           ))}
         </div>
@@ -107,8 +107,8 @@ export default function LeaderboardPage() {
                 key={analyst.id}
                 className={`flex items-center gap-4 p-4 rounded-2xl border transition-all ${
                   isTop3
-                    ? 'bg-white border-lavender-200/60 shadow-sm'
-                    : 'bg-white/60 border-lavender-100/40'
+                    ? 'bg-white border-purple-200/60 shadow-sm'
+                    : 'bg-white/60 border-purple-100/40'
                 }`}
               >
                 {/* Rank */}
@@ -121,7 +121,7 @@ export default function LeaderboardPage() {
 
                 {/* Avatar */}
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm flex-shrink-0 ${
-                  isTop3 ? 'bg-gradient-to-br from-lavender-100 to-rose-200 text-red-600' : 'bg-lavender-50 text-red-400'
+                  isTop3 ? 'bg-gradient-to-br from-purple-100 to-rose-200 text-red-600' : 'bg-purple-50 text-red-400'
                 }`}>
                   {(analyst.display_name || '?').charAt(0).toUpperCase()}
                 </div>
@@ -158,7 +158,7 @@ export default function LeaderboardPage() {
           })}
         </div>
       ) : (
-        <div className="text-center py-20 bg-white rounded-3xl border border-lavender-100/40">
+        <div className="text-center py-20 bg-white rounded-3xl border border-purple-100/40">
           <div className="text-4xl mb-3">🌙</div>
           <p className="font-serif text-base font-semibold text-gray-600 mb-1">No analysts ranked yet.</p>
           <p className="text-gray-400 text-sm">Armyrang awaits its first prophets.</p>

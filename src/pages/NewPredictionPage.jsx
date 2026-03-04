@@ -76,7 +76,7 @@ export default function NewPredictionPage() {
         Back
       </button>
 
-      <div className="bg-white rounded-3xl border border-lavender-100/50 p-6 sm:p-8">
+      <div className="bg-white rounded-3xl border border-purple-100/50 p-6 sm:p-8">
         <p className="text-[10px] font-black tracking-[0.2em] uppercase text-red-400 mb-1">Submit a Signal</p>
         <h1 className="font-serif text-2xl font-bold text-gray-900 mb-1">New Prediction</h1>
         <p className="text-sm text-gray-400 mb-6">Frame it analytically. Submit your cultural observation for the community to assess.</p>
@@ -100,8 +100,8 @@ export default function NewPredictionPage() {
                   onClick={() => setCategory(cat.value)}
                   className={`p-3 rounded-xl border-2 text-left transition-all duration-200 ${
                     category === cat.value
-                      ? 'border-red-400 bg-lavender-50 shadow-sm'
-                      : 'border-lavender-100/50 bg-white hover:border-lavender-200 hover:bg-lavender-50/30'
+                      ? 'border-red-400 bg-purple-50 shadow-sm'
+                      : 'border-purple-100/50 bg-white hover:border-purple-200 hover:bg-purple-50/30'
                   }`}
                 >
                   <span className="text-lg">{cat.emoji}</span>
@@ -119,7 +119,7 @@ export default function NewPredictionPage() {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-4 py-2.5 bg-white border border-lavender-100/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-200 transition-all shadow-sm"
+              className="w-full px-4 py-2.5 bg-white border border-purple-100/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-200 transition-all shadow-sm"
               placeholder="e.g., Coordinated PR rollout suggests strategic alliance..."
               required
             />
@@ -132,7 +132,7 @@ export default function NewPredictionPage() {
               value={body}
               onChange={(e) => setBody(e.target.value)}
               rows={6}
-              className="w-full px-4 py-3 bg-white border border-lavender-100/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-200 transition-all resize-none leading-relaxed shadow-sm"
+              className="w-full px-4 py-3 bg-white border border-purple-100/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-200 transition-all resize-none leading-relaxed shadow-sm"
               placeholder="Observational note:
 The synchronized timing of recent appearances + coordinated media rollout suggest...
 
@@ -158,7 +158,7 @@ Conclusion: ..."
               type="url"
               value={evidenceUrl}
               onChange={(e) => setEvidenceUrl(e.target.value)}
-              className="w-full px-4 py-2.5 bg-white border border-lavender-100/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-200 transition-all shadow-sm"
+              className="w-full px-4 py-2.5 bg-white border border-purple-100/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-200 transition-all shadow-sm"
               placeholder="https://..."
             />
           </div>

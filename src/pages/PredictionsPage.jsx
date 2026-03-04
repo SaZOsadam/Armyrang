@@ -96,7 +96,7 @@ export default function PredictionsPage() {
           placeholder="Search observations..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-11 pr-4 py-3 bg-white border border-lavender-100/60 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-transparent transition-all shadow-sm"
+          className="w-full pl-11 pr-4 py-3 bg-white border border-purple-100/60 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-transparent transition-all shadow-sm"
         />
       </div>
 
@@ -109,7 +109,7 @@ export default function PredictionsPage() {
             className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200 ${
               activeCategory === cat.value
                 ? 'bg-red-600 text-white shadow-md shadow-red-200/40'
-                : 'bg-white text-gray-500 border border-lavender-100/60 hover:border-red-300/60 hover:text-red-600 hover:bg-lavender-50'
+                : 'bg-white text-gray-500 border border-purple-100/60 hover:border-red-300/60 hover:text-red-600 hover:bg-purple-50'
             }`}
           >
             {cat.emoji} {cat.label}
@@ -125,8 +125,8 @@ export default function PredictionsPage() {
             onClick={() => setActiveStatus(st.value)}
             className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
               activeStatus === st.value
-                ? 'bg-lavender-100 text-red-600 border border-lavender-200'
-                : 'bg-white/60 text-gray-400 border border-transparent hover:bg-lavender-50 hover:text-gray-600'
+                ? 'bg-purple-100 text-red-600 border border-purple-200'
+                : 'bg-white/60 text-gray-400 border border-transparent hover:bg-purple-50 hover:text-gray-600'
             }`}
           >
             {st.label}
@@ -138,11 +138,11 @@ export default function PredictionsPage() {
       {loading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[1, 2, 3, 4, 5, 6].map(i => (
-            <div key={i} className="bg-white/50 rounded-2xl border border-lavender-100/30 p-5 animate-pulse">
-              <div className="h-4 bg-lavender-100 rounded w-24 mb-3" />
-              <div className="h-5 bg-lavender-100 rounded w-3/4 mb-2" />
-              <div className="h-4 bg-lavender-50 rounded w-full mb-1" />
-              <div className="h-4 bg-lavender-50 rounded w-2/3" />
+            <div key={i} className="bg-white/50 rounded-2xl border border-purple-100/30 p-5 animate-pulse">
+              <div className="h-4 bg-purple-100 rounded w-24 mb-3" />
+              <div className="h-5 bg-purple-100 rounded w-3/4 mb-2" />
+              <div className="h-4 bg-purple-50 rounded w-full mb-1" />
+              <div className="h-4 bg-purple-50 rounded w-2/3" />
             </div>
           ))}
         </div>
@@ -153,7 +153,7 @@ export default function PredictionsPage() {
           ))}
         </div>
       ) : (
-        <div className="text-center py-20 bg-white rounded-3xl border border-lavender-100/40">
+        <div className="text-center py-20 bg-white rounded-3xl border border-purple-100/40">
           <div className="text-4xl mb-3">🌙</div>
           <p className="font-serif text-base font-semibold text-gray-600 mb-1">No signals detected.</p>
           <p className="text-gray-400 text-sm">Try adjusting your filters or search query.</p>
