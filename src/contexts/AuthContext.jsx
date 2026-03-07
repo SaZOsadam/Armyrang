@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { supabase, isConfigured } from '../lib/supabase'
+import { resetQuizForLogout } from '../lib/quizData'
 
 const AuthContext = createContext(null)
 
@@ -86,6 +87,7 @@ export function AuthProvider({ children }) {
   }
 
   async function signOut() {
+    resetQuizForLogout()
     if (!isConfigured) return
     await supabase.auth.signOut()
   }
