@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
 import Layout from './components/Layout'
@@ -5,8 +6,16 @@ import HomePage from './pages/HomePage'
 import AuthPage from './pages/AuthPage'
 import PredictionsPage from './pages/PredictionsPage'
 import LeaderboardPage from './pages/LeaderboardPage'
+import ARMYQuiz from './components/ARMYQuiz'
+import { checkQuizPassed } from './lib/quizData'
 
 export default function App() {
+  const [quizPassed, setQuizPassed] = useState(checkQuizPassed)
+
+  if (!quizPassed) {
+    return <ARMYQuiz onPass={() => setQuizPassed(true)} />
+  }
+
   return (
     <BrowserRouter>
       <AuthProvider>

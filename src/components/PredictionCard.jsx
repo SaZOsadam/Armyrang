@@ -29,8 +29,19 @@ function formatDate(dateStr) {
   })
 }
 
+const MEMBER_COLORS = {
+  RM: 'bg-indigo-50 text-indigo-700',
+  Jin: 'bg-pink-50 text-pink-700',
+  Suga: 'bg-gray-100 text-gray-700',
+  'J-Hope': 'bg-orange-50 text-orange-700',
+  Jimin: 'bg-rose-50 text-rose-700',
+  V: 'bg-teal-50 text-teal-700',
+  Jungkook: 'bg-blue-50 text-blue-700',
+  Group: 'bg-purple-50 text-purple-700',
+}
+
 export default function PredictionCard({ prediction, onVote }) {
-  const { title, description, category, status, confidence_avg, vote_count, created_at, profiles } = prediction
+  const { title, description, category, member, status, confidence_avg, vote_count, created_at, profiles } = prediction
   const categoryColor = CATEGORY_COLORS[category] || 'bg-gray-100 text-gray-700'
   const statusConfig = STATUS_CONFIG[status] || STATUS_CONFIG.active
   const StatusIcon = statusConfig.icon
@@ -38,10 +49,17 @@ export default function PredictionCard({ prediction, onVote }) {
   return (
     <div className="bg-white rounded-3xl border border-gray-200 p-8 hover:shadow-lg hover:border-gray-300 transition-all duration-300 group flex flex-col gap-5">
       <div className="flex items-center justify-between gap-3">
-        <span className={`text-xs font-semibold px-3 py-1.5 rounded-xl ${categoryColor}`}>
-          {category}
-        </span>
-        <div className={`flex items-center gap-1.5 text-xs ${statusConfig.color}`}>
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className={`text-xs font-semibold px-3 py-1.5 rounded-xl ${categoryColor}`}>
+            {category}
+          </span>
+          {member && (
+            <span className={`text-xs font-semibold px-3 py-1.5 rounded-xl ${MEMBER_COLORS[member] || 'bg-purple-50 text-purple-700'}`}>
+              💜 {member}
+            </span>
+          )}
+        </div>
+        <div className={`flex items-center gap-1.5 text-xs ${statusConfig.color} shrink-0`}>
           <StatusIcon size={13} />
           <span className="font-medium">{statusConfig.label}</span>
         </div>

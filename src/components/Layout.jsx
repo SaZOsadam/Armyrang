@@ -2,9 +2,11 @@ import { NavLink, Link } from 'react-router-dom'
 import { Home, TrendingUp, Trophy, LogIn, LogOut, User } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import NotificationBell from './NotificationBell'
+import { useStreak } from '../hooks/useStreak'
 
 export default function Layout({ children }) {
   const { user, profile, signOut } = useAuth()
+  const { streak } = useStreak()
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -65,6 +67,12 @@ export default function Layout({ children }) {
             {user ? (
               <div className="flex items-center gap-3">
                 <NotificationBell />
+                {streak > 0 && (
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 border border-purple-200 rounded-xl" title={`${streak}-day streak`}>
+                    <span className="text-sm">💜</span>
+                    <span className="text-xs font-bold text-purple-700">{streak}d</span>
+                  </div>
+                )}
                 <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-xl">
                   <div className="w-7 h-7 bg-red-100 rounded-full flex items-center justify-center">
                     <span className="text-red-600 text-xs font-semibold">

@@ -2,13 +2,14 @@ import { useState } from 'react'
 import { Plus, X } from 'lucide-react'
 import PredictionCard from '../components/PredictionCard'
 import ConfidenceSlider from '../components/ConfidenceSlider'
-import { MOCK_PREDICTIONS, CATEGORIES } from '../lib/mockData'
+import { MOCK_PREDICTIONS, CATEGORIES, BTS_MEMBERS } from '../lib/mockData'
 import { useAuth } from '../contexts/AuthContext'
 import { Link } from 'react-router-dom'
 
 export default function PredictionsPage() {
   const { user, isAnalyst } = useAuth()
   const [activeCategory, setActiveCategory] = useState('All')
+  const [activeMember, setActiveMember] = useState('all')
   const [votingPrediction, setVotingPrediction] = useState(null)
   const [confidence, setConfidence] = useState(50)
   const [showCreate, setShowCreate] = useState(false)
@@ -18,10 +19,11 @@ export default function PredictionsPage() {
     category: 'Market Analysis',
   })
 
-  const filtered =
-    activeCategory === 'All'
-      ? MOCK_PREDICTIONS
-      : MOCK_PREDICTIONS.filter((p) => p.category === activeCategory)
+  const filtered = MOCK_PREDICTIONS.filter((p) => {
+    const catMatch = activeCategory === 'All' || p.category === activeCategory
+    const memberMatch = activeMember === 'all' || p.member === activeMember
+    return catMatch && memberMatch
+  })
 
   function handleVote() {
     setVotingPrediction(null)
@@ -62,6 +64,26 @@ export default function PredictionsPage() {
             Join to Predict
           </Link>
         ) : null}
+      </div>
+
+      {/* Member filter */}
+      <div className="mb-4">
+        <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">Filter by Member</p>
+        <div className="flex gap-2 flex-wrap">
+          {BTS_MEMBERS.map((m) => (
+            <button
+              key={m.id}
+              onClick={() => setActiveMember(m.id)}
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all border ${
+                activeMember === m.id
+                  ? 'bg-purple-600 text-white border-purple-600 shadow-sm'
+                  : 'bg-white text-gray-600 border-gray-200 hover:border-purple-300 hover:text-purple-700'
+              }`}
+            >
+              <span>{m.emoji}</span> {m.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Category filter */}

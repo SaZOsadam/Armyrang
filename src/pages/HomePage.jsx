@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { TrendingUp, Users, Award, ArrowRight, Eye, Star } from 'lucide-react'
+import { TrendingUp, Users, Award, ArrowRight, Eye, Star, Flame } from 'lucide-react'
 import PredictionCard from '../components/PredictionCard'
 import { MOCK_PREDICTIONS, MOCK_STATS } from '../lib/mockData'
 import { useAuth } from '../contexts/AuthContext'
@@ -7,6 +7,7 @@ import { useAuth } from '../contexts/AuthContext'
 export default function HomePage() {
   const { user } = useAuth()
   const featured = MOCK_PREDICTIONS.slice(0, 3)
+  const signalOfDay = [...MOCK_PREDICTIONS].sort((a, b) => b.vote_count - a.vote_count)[0]
 
   return (
     <div>
@@ -89,6 +90,64 @@ export default function HomePage() {
       </section>
 
       <section className="max-w-7xl mx-auto px-6 py-16 space-y-20">
+        {/* Signal of the Day */}
+        <div>
+          <div className="flex items-center gap-2 mb-6">
+            <Flame size={18} className="text-purple-500" />
+            <span className="text-xs font-bold tracking-widest uppercase text-purple-600">Signal of the Day</span>
+          </div>
+          <div
+            className="rounded-3xl p-8 md:p-10 border border-purple-200 relative overflow-hidden"
+            style={{ background: 'linear-gradient(135deg, #1e0a3c 0%, #3b0764 100%)' }}
+          >
+            <div className="absolute top-0 right-0 w-64 h-64 opacity-10" style={{ background: 'radial-gradient(circle, #a855f7 0%, transparent 70%)' }} />
+            <div className="relative">
+              <div className="flex items-center gap-3 mb-5 flex-wrap">
+                {signalOfDay.member && (
+                  <span className="text-xs font-bold px-3 py-1.5 bg-purple-500/30 text-purple-200 border border-purple-500/40 rounded-xl">
+                    💜 {signalOfDay.member}
+                  </span>
+                )}
+                <span className="text-xs font-bold px-3 py-1.5 bg-white/10 text-white/70 border border-white/20 rounded-xl">
+                  {signalOfDay.category}
+                </span>
+                <span className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 bg-orange-500/20 text-orange-300 border border-orange-500/30 rounded-xl">
+                  <Flame size={11} /> {signalOfDay.vote_count} votes
+                </span>
+              </div>
+              <h2
+                className="text-2xl md:text-3xl font-bold text-white mb-4 leading-snug max-w-2xl"
+                style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+              >
+                {signalOfDay.title}
+              </h2>
+              <p className="text-purple-200/70 text-sm leading-relaxed max-w-xl mb-6">
+                {signalOfDay.description}
+              </p>
+              <div className="flex items-center gap-6 flex-wrap">
+                <div className="flex-1 min-w-48">
+                  <div className="flex items-center justify-between text-xs mb-1.5">
+                    <span className="text-purple-300/70 font-medium">ARMY confidence</span>
+                    <span className="text-white font-bold">{signalOfDay.confidence_avg}%</span>
+                  </div>
+                  <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-purple-400 rounded-full transition-all duration-700"
+                      style={{ width: `${signalOfDay.confidence_avg}%` }}
+                    />
+                  </div>
+                </div>
+                <Link
+                  to="/predictions"
+                  className="flex items-center gap-2 px-6 py-3 bg-purple-500 hover:bg-purple-400 text-white rounded-2xl text-sm font-bold transition-all no-underline active:scale-[0.98]"
+                >
+                  Vote on this <ArrowRight size={15} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Latest Signals */}
         <div>
           <div className="flex items-center justify-between mb-8">
