@@ -1,20 +1,56 @@
 import { Link } from 'react-router-dom'
-import { TrendingUp, Users, Award, ArrowRight, Eye, Star, Flame } from 'lucide-react'
+import { TrendingUp, Users, Award, ArrowRight, Eye, Star, Flame, Calendar } from 'lucide-react'
 import PredictionCard from '../components/PredictionCard'
 import { MOCK_PREDICTIONS, MOCK_STATS } from '../lib/mockData'
 import { useAuth } from '../contexts/AuthContext'
 
+function useDaysUntil(targetDate) {
+  const now = new Date()
+  const target = new Date(targetDate)
+  const diff = Math.ceil((target - now) / (1000 * 60 * 60 * 24))
+  return diff > 0 ? diff : 0
+}
+
 export default function HomePage() {
   const { user } = useAuth()
-  const featured = MOCK_PREDICTIONS.slice(0, 3)
-  const signalOfDay = [...MOCK_PREDICTIONS].sort((a, b) => b.vote_count - a.vote_count)[0]
+  const featured = MOCK_PREDICTIONS.filter((p) => p.status === 'active').slice(0, 3)
+  const signalOfDay = [...MOCK_PREDICTIONS].filter((p) => p.status === 'active').sort((a, b) => b.vote_count - a.vote_count)[0]
+  const daysLeft = useDaysUntil('2026-03-20')
 
   return (
     <div>
+      {/* ARIRANG Countdown Banner */}
+      <div
+        className="w-full border-b border-purple-900/30"
+        style={{ background: 'linear-gradient(90deg, #0d0118 0%, #1e0a3c 50%, #0d0118 100%)' }}
+      >
+        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-4 flex-wrap">
+          <div className="flex items-center gap-3">
+            <span className="text-purple-400 text-sm">💜</span>
+            <span className="text-white text-sm font-semibold">
+              BTS · <span className="text-purple-300">ARIRANG</span> drops March 20, 2026
+            </span>
+            <span className="hidden sm:inline text-purple-400/60 text-xs">방탄소년단</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Calendar size={13} className="text-purple-400" />
+            <span className="text-purple-300 text-xs font-bold tracking-widest">
+              {daysLeft > 0 ? `${daysLeft} DAYS TO GO` : 'OUT NOW'}
+            </span>
+            <Link
+              to="/predictions"
+              className="ml-2 text-xs font-bold px-3 py-1 bg-purple-600 hover:bg-purple-500 text-white rounded-lg no-underline transition-all"
+            >
+              Make Predictions
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* Hero */}
       <section className="max-w-7xl mx-auto px-6 py-24 md:py-32 text-center">
         <div className="inline-flex items-center gap-2 bg-red-50 text-red-700 text-xs font-semibold px-4 py-2 rounded-full mb-8 border border-red-100">
-          🔭 Cultural Intelligence Platform
+          🔭 ARMY Cultural Intelligence Platform
         </div>
         <h1
           className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight"
@@ -158,7 +194,7 @@ export default function HomePage() {
               >
                 Latest Signals
               </h2>
-              <p className="text-gray-500 text-sm">Recent observations from the Society</p>
+              <p className="text-gray-500 text-sm">Live ARIRANG era predictions from the Society</p>
             </div>
             <Link
               to="/predictions"
