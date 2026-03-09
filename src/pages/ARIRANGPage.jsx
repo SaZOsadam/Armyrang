@@ -288,6 +288,34 @@ export default function ARIRANGPage() {
           </div>
         </section>
 
+        {/* World Tour Banner */}
+        <section>
+          <div
+            className="rounded-3xl p-8 border border-red-500/20 flex flex-col md:flex-row items-center justify-between gap-6"
+            style={{ background: 'linear-gradient(135deg, rgba(255,0,0,0.06) 0%, rgba(139,0,0,0.08) 100%)' }}
+          >
+            <div>
+              <p className="text-red-400/60 text-xs font-bold tracking-widest uppercase mb-2">🎤 Officially Announced</p>
+              <h3
+                className="text-white text-2xl md:text-3xl font-bold mb-1 leading-tight"
+                style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+              >
+                BTS WORLD TOUR: ARIRANG
+              </h3>
+              <p className="text-red-200/50 text-sm">79 shows · 34 cities · 5 continents · April 2026 – March 2027</p>
+              <p className="text-red-300/40 text-xs mt-1">360° in-the-round stage · The largest tour by any South Korean artist</p>
+            </div>
+            <div className="flex items-center gap-3 flex-shrink-0">
+              <Link
+                to="/tour"
+                className="inline-flex items-center gap-2 px-7 py-3 bg-red-600 hover:bg-red-500 text-white rounded-2xl text-sm font-bold transition-all no-underline active:scale-[0.98]"
+              >
+                View All Tour Dates
+              </Link>
+            </div>
+          </div>
+        </section>
+
       </div>
     </div>
   )

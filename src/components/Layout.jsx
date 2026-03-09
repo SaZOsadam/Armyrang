@@ -1,5 +1,5 @@
 import { NavLink, Link } from 'react-router-dom'
-import { Home, TrendingUp, Trophy, LogIn, LogOut, User, Newspaper, Music2 } from 'lucide-react'
+import { Home, TrendingUp, Trophy, LogIn, LogOut, User, Newspaper, Music2, Map } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import NotificationBell from './NotificationBell'
 import { useStreak } from '../hooks/useStreak'
@@ -84,6 +84,18 @@ export default function Layout({ children }) {
               }
             >
               <Newspaper size={16} /> News
+            </NavLink>
+            <NavLink
+              to="/tour"
+              className={({ isActive }) =>
+                `flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-medium transition-all duration-150 no-underline ${
+                  isActive
+                    ? 'bg-red-50 text-red-700'
+                    : 'text-red-500 hover:bg-red-50 hover:text-red-700'
+                }`
+              }
+            >
+              <Map size={16} /> Tour
             </NavLink>
           </div>
 
@@ -189,6 +201,17 @@ export default function Layout({ children }) {
           >
             <Newspaper size={20} />
             <span className="text-xs font-medium">News</span>
+          </NavLink>
+          <NavLink
+            to="/tour"
+            className={({ isActive }) =>
+              `flex flex-col items-center gap-1 px-4 py-2 rounded-xl no-underline transition-all min-w-[64px] ${
+                isActive ? 'text-red-600' : 'text-gray-400'
+              }`
+            }
+          >
+            <Map size={20} />
+            <span className="text-xs font-medium">Tour</span>
           </NavLink>
           {user ? (
             <button

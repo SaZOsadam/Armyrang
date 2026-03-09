@@ -8,6 +8,7 @@ import PredictionsPage from './pages/PredictionsPage'
 import LeaderboardPage from './pages/LeaderboardPage'
 import ARIRANGPage from './pages/ARIRANGPage'
 import NewsPage from './pages/NewsPage'
+import TourPage from './pages/TourPage'
 import ARMYQuiz from './components/ARMYQuiz'
 import { checkQuizPassed } from './lib/quizData'
 
@@ -29,6 +30,7 @@ export default function App() {
             <Route path="/leaderboard" element={<LeaderboardPage />} />
             <Route path="/arirang" element={<ARIRANGPage />} />
             <Route path="/news" element={<NewsPage />} />
+            <Route path="/tour" element={<TourPage />} />
           </Routes>
         </Layout>
       </AuthProvider>
