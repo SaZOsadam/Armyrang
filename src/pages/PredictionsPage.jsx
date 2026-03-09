@@ -5,8 +5,10 @@ import ConfidenceSlider from '../components/ConfidenceSlider'
 import { MOCK_PREDICTIONS, CATEGORIES, BTS_MEMBERS } from '../lib/mockData'
 import { useAuth } from '../contexts/AuthContext'
 import { Link } from 'react-router-dom'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 export default function PredictionsPage() {
+  usePageTitle('Predictions')
   const { user, isAnalyst } = useAuth()
   const [activeCategory, setActiveCategory] = useState('All')
   const [activeMember, setActiveMember] = useState('all')

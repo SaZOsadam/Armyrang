@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { ExternalLink, MessageSquare, TrendingUp, Calendar, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { NEWS_ARTICLES, FAN_DISCUSSIONS, EVENTS } from '../lib/newsData'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 const CATEGORY_STYLES = {
   Interview:   'bg-purple-500/15 text-purple-300 border-purple-500/30',
@@ -27,6 +28,7 @@ function formatDate(dateStr) {
 const EVENT_ICONS = { release: '🎵', media: '🎬', live: '📡', announcement: '📢' }
 
 export default function NewsPage() {
+  usePageTitle('Coverage & News')
   const [activeFilter, setActiveFilter] = useState('All')
 
   const filtered = activeFilter === 'All'

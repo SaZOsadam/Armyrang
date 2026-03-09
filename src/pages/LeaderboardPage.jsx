@@ -1,5 +1,6 @@
 import { Trophy } from 'lucide-react'
 import { MOCK_LEADERBOARD } from '../lib/mockData'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 const TITLE_COLORS = {
   'Timeline Architect': 'bg-yellow-50 text-yellow-700 border-yellow-200',
@@ -24,6 +25,7 @@ function TitleBadge({ title }) {
 }
 
 export default function LeaderboardPage() {
+  usePageTitle('Leaderboard')
   const top3 = MOCK_LEADERBOARD.slice(0, 3)
   const rest = MOCK_LEADERBOARD.slice(3)
 

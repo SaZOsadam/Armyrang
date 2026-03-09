@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { TrendingUp, ArrowRight, CheckCircle, Clock, Flame, ExternalLink, Music } from 'lucide-react'
 import { MOCK_PREDICTIONS } from '../lib/mockData'
 import { TRACKLIST_SPECULATION, NEWS_ARTICLES, EVENTS } from '../lib/newsData'
+import { useCountdown } from '../hooks/useCountdown'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 const MEMBER_TAG_STYLES = {
   RM:       'bg-blue-500/20 text-blue-300 border-blue-500/30',
@@ -14,29 +15,6 @@ const MEMBER_TAG_STYLES = {
   Jungkook: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
   Group:    'bg-white/10 text-white/80 border-white/20',
   Feature:  'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
-}
-
-function useCountdown(targetDate) {
-  const [timeLeft, setTimeLeft] = useState({})
-
-  useEffect(() => {
-    function calc() {
-      const diff = new Date(targetDate) - new Date()
-      if (diff <= 0) return setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, dropped: true })
-      setTimeLeft({
-        days: Math.floor(diff / 86400000),
-        hours: Math.floor((diff % 86400000) / 3600000),
-        minutes: Math.floor((diff % 3600000) / 60000),
-        seconds: Math.floor((diff % 60000) / 1000),
-        dropped: false,
-      })
-    }
-    calc()
-    const id = setInterval(calc, 1000)
-    return () => clearInterval(id)
-  }, [targetDate])
-
-  return timeLeft
 }
 
 function CountdownUnit({ value, label }) {
@@ -76,6 +54,7 @@ const EVENT_BADGE = {
 const bg = 'linear-gradient(160deg, #050010 0%, #0d0118 50%, #1a0533 100%)'
 
 export default function ARIRANGPage() {
+  usePageTitle('ARIRANG · 아리랑')
   const countdown = useCountdown('2026-03-20T00:00:00+09:00')
   const arirangPredictions = MOCK_PREDICTIONS
     .filter((p) => p.status === 'active' && (p.member === 'Group' || p.id <= '5'))

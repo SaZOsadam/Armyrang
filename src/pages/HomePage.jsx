@@ -3,6 +3,7 @@ import { TrendingUp, Users, Award, ArrowRight, Eye, Star, Flame, Calendar } from
 import PredictionCard from '../components/PredictionCard'
 import { MOCK_PREDICTIONS, MOCK_STATS } from '../lib/mockData'
 import { useAuth } from '../contexts/AuthContext'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 function useDaysUntil(targetDate) {
   const now = new Date()
@@ -15,6 +16,7 @@ export default function HomePage() {
   const { user } = useAuth()
   const featured = MOCK_PREDICTIONS.filter((p) => p.status === 'active').slice(0, 3)
   const signalOfDay = [...MOCK_PREDICTIONS].filter((p) => p.status === 'active').sort((a, b) => b.vote_count - a.vote_count)[0]
+  usePageTitle('Home')
   const daysLeft = useDaysUntil('2026-03-20')
 
   return (

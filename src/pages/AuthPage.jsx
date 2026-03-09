@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom'
 import { Eye, EyeOff } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import { isConfigured } from '../lib/supabase'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 export default function AuthPage() {
   const [tab, setTab] = useState('login')
@@ -14,6 +15,7 @@ export default function AuthPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
+  usePageTitle('Join the Society')
   const { user, signIn, signUp } = useAuth()
 
   if (user) return <Navigate to="/" replace />
