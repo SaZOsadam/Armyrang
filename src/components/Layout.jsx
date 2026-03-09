@@ -97,20 +97,6 @@ export default function Layout({ children }) {
             >
               <Map size={16} /> Tour
             </NavLink>
-            {profile?.role === 'admin' && (
-              <NavLink
-                to="/admin"
-                className={({ isActive }) =>
-                  `flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-medium transition-all duration-150 no-underline ${
-                    isActive
-                      ? 'bg-gray-900 text-white'
-                      : 'text-gray-500 hover:bg-gray-100 hover:text-gray-900'
-                  }`
-                }
-              >
-                <Shield size={16} /> Admin
-              </NavLink>
-            )}
           </div>
 
           <div className="hidden md:flex items-center gap-3">
@@ -227,19 +213,6 @@ export default function Layout({ children }) {
             <Map size={20} />
             <span className="text-xs font-medium">Tour</span>
           </NavLink>
-          {profile?.role === 'admin' && (
-            <NavLink
-              to="/admin"
-              className={({ isActive }) =>
-                `flex flex-col items-center gap-1 px-4 py-2 rounded-xl no-underline transition-all min-w-[64px] ${
-                  isActive ? 'text-gray-900' : 'text-gray-400'
-                }`
-              }
-            >
-              <Shield size={20} />
-              <span className="text-xs font-medium">Admin</span>
-            </NavLink>
-          )}
           {user ? (
             <button
               onClick={signOut}
