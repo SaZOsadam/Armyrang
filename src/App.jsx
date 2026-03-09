@@ -9,6 +9,7 @@ import LeaderboardPage from './pages/LeaderboardPage'
 import ARIRANGPage from './pages/ARIRANGPage'
 import NewsPage from './pages/NewsPage'
 import TourPage from './pages/TourPage'
+import AdminPage from './pages/AdminPage'
 import ARMYQuiz from './components/ARMYQuiz'
 import { checkQuizPassed } from './lib/quizData'
 
@@ -31,6 +32,7 @@ export default function App() {
             <Route path="/arirang" element={<ARIRANGPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/tour" element={<TourPage />} />
+            <Route path="/admin" element={<AdminPage />} />
           </Routes>
         </Layout>
       </AuthProvider>

@@ -51,5 +51,29 @@ export function useNews() {
 
   const featuredArticle = articles.find((a) => a.featured) || articles[0] || null
 
-  return { articles, featuredArticle, loading, error }
+  async function addArticle(data) {
+    if (!isConfigured) return { error: 'Supabase not configured' }
+    const { data: row, error: err } = await supabase.from('news').insert(data).select().single()
+    if (err) return { error: err.message }
+    setArticles((prev) => [normaliseArticle(row), ...prev])
+    return { data: row }
+  }
+
+  async function updateArticle(id, data) {
+    if (!isConfigured) return { error: 'Supabase not configured' }
+    const { data: row, error: err } = await supabase.from('news').update(data).eq('id', id).select().single()
+    if (err) return { error: err.message }
+    setArticles((prev) => prev.map((a) => (a.id === id ? normaliseArticle(row) : a)))
+    return { data: row }
+  }
+
+  async function deleteArticle(id) {
+    if (!isConfigured) return { error: 'Supabase not configured' }
+    const { error: err } = await supabase.from('news').delete().eq('id', id)
+    if (err) return { error: err.message }
+    setArticles((prev) => prev.filter((a) => a.id !== id))
+    return { success: true }
+  }
+
+  return { articles, featuredArticle, loading, error, addArticle, updateArticle, deleteArticle }
 }

@@ -49,5 +49,35 @@ export function useEvents() {
   const upcoming = events.filter((e) => new Date(e.date) >= new Date())
   const past = events.filter((e) => new Date(e.date) < new Date())
 
-  return { events, upcoming, past, loading, error }
+  async function addEvent(data) {
+    if (!isConfigured) return { error: 'Supabase not configured' }
+    const payload = { ...data, event_date: data.date, event_time: data.time }
+    delete payload.date
+    delete payload.time
+    const { data: row, error: err } = await supabase.from('events').insert(payload).select().single()
+    if (err) return { error: err.message }
+    setEvents((prev) => [...prev, normaliseEvent(row)].sort((a, b) => new Date(a.date) - new Date(b.date)))
+    return { data: row }
+  }
+
+  async function updateEvent(id, data) {
+    if (!isConfigured) return { error: 'Supabase not configured' }
+    const payload = { ...data, event_date: data.date, event_time: data.time }
+    delete payload.date
+    delete payload.time
+    const { data: row, error: err } = await supabase.from('events').update(payload).eq('id', id).select().single()
+    if (err) return { error: err.message }
+    setEvents((prev) => prev.map((e) => (e.id === id ? normaliseEvent(row) : e)))
+    return { data: row }
+  }
+
+  async function deleteEvent(id) {
+    if (!isConfigured) return { error: 'Supabase not configured' }
+    const { error: err } = await supabase.from('events').delete().eq('id', id)
+    if (err) return { error: err.message }
+    setEvents((prev) => prev.filter((e) => e.id !== id))
+    return { success: true }
+  }
+
+  return { events, upcoming, past, loading, error, addEvent, updateEvent, deleteEvent }
 }

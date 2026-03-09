@@ -95,5 +95,24 @@ export function usePredictions() {
     return data?.confidence ?? null
   }
 
-  return { predictions, loading, error, createPrediction, castVote, getUserVote, refetch: fetchPredictions }
+  async function resolvePrediction(id, status) {
+    if (!isConfigured) return { error: 'Supabase not configured' }
+    const { error: err } = await supabase
+      .from('predictions')
+      .update({ status, resolved_at: new Date().toISOString() })
+      .eq('id', id)
+    if (err) return { error: err.message }
+    await fetchPredictions()
+    return { success: true }
+  }
+
+  async function deletePrediction(id) {
+    if (!isConfigured) return { error: 'Supabase not configured' }
+    const { error: err } = await supabase.from('predictions').delete().eq('id', id)
+    if (err) return { error: err.message }
+    setPredictions((prev) => prev.filter((p) => p.id !== id))
+    return { success: true }
+  }
+
+  return { predictions, loading, error, createPrediction, castVote, getUserVote, resolvePrediction, deletePrediction, refetch: fetchPredictions }
 }
