@@ -1,8 +1,10 @@
 import { useState } from 'react'
-import { ExternalLink, MessageSquare, TrendingUp, Calendar, ArrowRight } from 'lucide-react'
+import { ExternalLink, MessageSquare, TrendingUp, Calendar, ArrowRight, Loader2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { NEWS_ARTICLES, FAN_DISCUSSIONS, EVENTS } from '../lib/newsData'
+import { FAN_DISCUSSIONS } from '../lib/newsData'
 import { usePageTitle } from '../hooks/usePageTitle'
+import { useNews } from '../hooks/useNews'
+import { useEvents } from '../hooks/useEvents'
 
 const CATEGORY_STYLES = {
   Interview:   'bg-purple-500/15 text-purple-300 border-purple-500/30',
@@ -30,14 +32,14 @@ const EVENT_ICONS = { release: '🎵', media: '🎬', live: '📡', announcement
 export default function NewsPage() {
   usePageTitle('Coverage & News')
   const [activeFilter, setActiveFilter] = useState('All')
+  const { articles, featuredArticle, loading: newsLoading } = useNews()
+  const { upcoming: upcomingEvents } = useEvents()
 
   const filtered = activeFilter === 'All'
-    ? NEWS_ARTICLES
-    : NEWS_ARTICLES.filter((a) => a.category === activeFilter)
+    ? articles
+    : articles.filter((a) => a.category === activeFilter)
 
-  const featuredArticle = NEWS_ARTICLES.find((a) => a.featured)
   const nonFeatured = filtered.filter((a) => !a.featured)
-  const upcomingEvents = [...EVENTS].sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0, 3)
 
   return (
     <div className="min-h-screen bg-gray-50">

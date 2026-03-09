@@ -21,11 +21,41 @@ create table if not exists predictions (
   title text not null,
   description text,
   category text not null check (category in ('Market Analysis', 'Body Language', 'Soft Conspiracy', 'Cultural Trends', 'Entertainment')),
+  member text default 'Group',
   status text not null default 'active' check (status in ('active', 'resolved_correct', 'resolved_incorrect', 'pending')),
   confidence_avg numeric not null default 0,
   vote_count integer not null default 0,
   created_at timestamptz not null default now(),
   resolved_at timestamptz
+);
+
+-- News articles table
+create table if not exists news (
+  id uuid default gen_random_uuid() primary key,
+  source text not null,
+  source_url text,
+  title text not null,
+  excerpt text,
+  url text,
+  youtube_id text,
+  category text not null default 'News',
+  featured boolean not null default false,
+  published_at timestamptz not null default now(),
+  tags text[] default '{}',
+  created_at timestamptz not null default now()
+);
+
+-- Events table
+create table if not exists events (
+  id uuid default gen_random_uuid() primary key,
+  title text not null,
+  description text,
+  event_date date not null,
+  event_time text,
+  type text not null default 'announcement' check (type in ('release', 'media', 'live', 'announcement', 'tour')),
+  url text,
+  confirmed boolean not null default false,
+  created_at timestamptz not null default now()
 );
 
 -- Votes table
@@ -281,3 +311,29 @@ create policy "Users can read own notifications"
 drop policy if exists "Users can update own notifications" on notifications;
 create policy "Users can update own notifications"
   on notifications for update using (auth.uid() = user_id);
+
+-- News: everyone can read, only admins can insert/update/delete
+alter table news enable row level security;
+
+drop policy if exists "News is viewable by everyone" on news;
+create policy "News is viewable by everyone"
+  on news for select using (true);
+
+drop policy if exists "Admins can manage news" on news;
+create policy "Admins can manage news"
+  on news for all
+  using (exists (select 1 from profiles where id = auth.uid() and role = 'admin'))
+  with check (exists (select 1 from profiles where id = auth.uid() and role = 'admin'));
+
+-- Events: everyone can read, only admins can insert/update/delete
+alter table events enable row level security;
+
+drop policy if exists "Events are viewable by everyone" on events;
+create policy "Events are viewable by everyone"
+  on events for select using (true);
+
+drop policy if exists "Admins can manage events" on events;
+create policy "Admins can manage events"
+  on events for all
+  using (exists (select 1 from profiles where id = auth.uid() and role = 'admin'))
+  with check (exists (select 1 from profiles where id = auth.uid() and role = 'admin'));

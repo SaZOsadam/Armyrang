@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import { TrendingUp, ArrowRight, CheckCircle, Clock, Flame, ExternalLink, Music } from 'lucide-react'
-import { MOCK_PREDICTIONS } from '../lib/mockData'
-import { TRACKLIST_SPECULATION, NEWS_ARTICLES, EVENTS } from '../lib/newsData'
+import { TRACKLIST_SPECULATION } from '../lib/newsData'
 import { useCountdown } from '../hooks/useCountdown'
 import { usePageTitle } from '../hooks/usePageTitle'
+import { usePredictions } from '../hooks/usePredictions'
+import { useNews } from '../hooks/useNews'
+import { useEvents } from '../hooks/useEvents'
 
 const MEMBER_TAG_STYLES = {
   RM:       'bg-blue-500/20 text-blue-300 border-blue-500/30',
@@ -56,11 +58,13 @@ const bg = 'linear-gradient(160deg, #050010 0%, #0d0118 50%, #1a0533 100%)'
 export default function ARIRANGPage() {
   usePageTitle('ARIRANG · 아리랑')
   const countdown = useCountdown('2026-03-20T13:00:00+09:00')
-  const arirangPredictions = MOCK_PREDICTIONS
-    .filter((p) => p.status === 'active' && (p.member === 'Group' || p.id <= '5'))
+  const { predictions } = usePredictions()
+  const { featuredArticle } = useNews()
+  const { events } = useEvents()
+  const arirangPredictions = predictions
+    .filter((p) => p.status === 'active')
     .slice(0, 6)
-  const featuredArticle = NEWS_ARTICLES.find((a) => a.featured)
-  const upcomingEvents = EVENTS.sort((a, b) => new Date(a.date) - new Date(b.date))
+  const upcomingEvents = [...events].sort((a, b) => new Date(a.date) - new Date(b.date))
 
   return (
     <div style={{ background: bg, minHeight: '100vh' }}>

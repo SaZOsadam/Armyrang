@@ -1,41 +1,54 @@
 import { useState } from 'react'
-import { Plus, X } from 'lucide-react'
+import { Plus, X, Loader2 } from 'lucide-react'
 import PredictionCard from '../components/PredictionCard'
 import ConfidenceSlider from '../components/ConfidenceSlider'
-import { MOCK_PREDICTIONS, CATEGORIES, BTS_MEMBERS } from '../lib/mockData'
+import { CATEGORIES, BTS_MEMBERS } from '../lib/mockData'
 import { useAuth } from '../contexts/AuthContext'
 import { Link } from 'react-router-dom'
 import { usePageTitle } from '../hooks/usePageTitle'
+import { usePredictions } from '../hooks/usePredictions'
 
 export default function PredictionsPage() {
   usePageTitle('Predictions')
-  const { user, isAnalyst } = useAuth()
+  const { user, profile, isAnalyst } = useAuth()
+  const { predictions, loading, createPrediction, castVote } = usePredictions()
   const [activeCategory, setActiveCategory] = useState('All')
   const [activeMember, setActiveMember] = useState('all')
   const [votingPrediction, setVotingPrediction] = useState(null)
   const [confidence, setConfidence] = useState(50)
+  const [voteLoading, setVoteLoading] = useState(false)
   const [showCreate, setShowCreate] = useState(false)
+  const [createLoading, setCreateLoading] = useState(false)
   const [newPrediction, setNewPrediction] = useState({
     title: '',
     description: '',
     category: 'Market Analysis',
+    member: 'Group',
   })
 
-  const filtered = MOCK_PREDICTIONS.filter((p) => {
+  const filtered = predictions.filter((p) => {
     const catMatch = activeCategory === 'All' || p.category === activeCategory
     const memberMatch = activeMember === 'all' || p.member === activeMember
     return catMatch && memberMatch
   })
 
-  function handleVote() {
+  async function handleVote() {
+    if (!user) return
+    setVoteLoading(true)
+    await castVote(votingPrediction.id, confidence, user.id)
+    setVoteLoading(false)
     setVotingPrediction(null)
     setConfidence(50)
   }
 
-  function handleCreate(e) {
+  async function handleCreate(e) {
     e.preventDefault()
+    if (!user) return
+    setCreateLoading(true)
+    await createPrediction(newPrediction, user.id)
+    setCreateLoading(false)
     setShowCreate(false)
-    setNewPrediction({ title: '', description: '', category: 'Market Analysis' })
+    setNewPrediction({ title: '', description: '', category: 'Market Analysis', member: 'Group' })
   }
 
   return (
@@ -106,7 +119,12 @@ export default function PredictionsPage() {
       </div>
 
       {/* Cards grid */}
-      {filtered.length > 0 ? (
+      {loading ? (
+        <div className="flex items-center justify-center py-24 gap-3 text-gray-400">
+          <Loader2 size={22} className="animate-spin" />
+          <span className="text-sm">Loading predictions...</span>
+        </div>
+      ) : filtered.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {filtered.map((prediction) => (
             <PredictionCard
@@ -159,6 +177,7 @@ export default function PredictionsPage() {
               value={confidence}
               onChange={setConfidence}
               onSubmit={handleVote}
+              loading={voteLoading}
             />
           </div>
         </div>
@@ -231,11 +250,25 @@ export default function PredictionsPage() {
                   ))}
                 </select>
               </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">Member</label>
+                <select
+                  value={newPrediction.member}
+                  onChange={(e) => setNewPrediction({ ...newPrediction, member: e.target.value })}
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                >
+                  {['Group','RM','Jin','Suga','J-Hope','Jimin','V','Jungkook'].map((m) => (
+                    <option key={m} value={m}>{m}</option>
+                  ))}
+                </select>
+              </div>
               <button
                 type="submit"
-                className="w-full py-4 bg-red-600 text-white rounded-2xl font-semibold hover:bg-red-700 hover:shadow-lg transition-all active:scale-[0.98]"
+                disabled={createLoading}
+                className="w-full py-4 bg-red-600 text-white rounded-2xl font-semibold hover:bg-red-700 hover:shadow-lg transition-all active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
-                File Prediction
+                {createLoading && <Loader2 size={16} className="animate-spin" />}
+                {createLoading ? 'Filing...' : 'File Prediction'}
               </button>
             </form>
           </div>
