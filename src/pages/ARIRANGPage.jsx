@@ -55,7 +55,7 @@ const bg = 'linear-gradient(160deg, #050010 0%, #0d0118 50%, #1a0533 100%)'
 
 export default function ARIRANGPage() {
   usePageTitle('ARIRANG · 아리랑')
-  const countdown = useCountdown('2026-03-20T00:00:00+09:00')
+  const countdown = useCountdown('2026-03-20T13:00:00+09:00')
   const arirangPredictions = MOCK_PREDICTIONS
     .filter((p) => p.status === 'active' && (p.member === 'Group' || p.id <= '5'))
     .slice(0, 6)
