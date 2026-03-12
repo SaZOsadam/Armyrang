@@ -310,12 +310,14 @@ export default function ARIRANGPage() {
               <p className="text-red-300/40 text-xs mt-1">360° in-the-round stage · The largest tour by any South Korean artist</p>
             </div>
             <div className="flex items-center gap-3 flex-shrink-0">
-              <Link
-                to="/tour"
+              <a
+                href="https://btsworldtourofficial.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-7 py-3 bg-red-600 hover:bg-red-500 text-white rounded-2xl text-sm font-bold transition-all no-underline active:scale-[0.98]"
               >
-                View All Tour Dates
-              </Link>
+                Official Tour Site ↗
+              </a>
             </div>
           </div>
         </section>
