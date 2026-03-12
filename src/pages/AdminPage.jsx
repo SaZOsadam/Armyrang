@@ -443,12 +443,20 @@ function PredictionsPanel() {
 
 export default function AdminPage() {
   usePageTitle('Admin Panel')
-  const { profile } = useAuth()
+  const { user, profile, loading } = useAuth()
   const [activeTab, setActiveTab] = useState('Predictions')
 
-  if (profile && profile.role !== 'admin') {
-    return <Navigate to="/" replace />
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh] gap-3 text-gray-400">
+        <Loader2 size={20} className="animate-spin" />
+        <span className="text-sm">Checking access...</span>
+      </div>
+    )
   }
+
+  if (!user) return <Navigate to="/auth" replace />
+  if (profile?.role !== 'admin') return <Navigate to="/" replace />
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
